@@ -5,25 +5,34 @@
 	<groupId>com.aakam</groupId>
 	<artifactId>SpringSampleProject</artifactId>
 	<name>SpringSampleProject</name>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.2.RELEASE</version>
+	</parent>
 	<properties>
-		<java-version>1.6</java-version>
+		<java-version>1.8</java-version>
 		<org.springframework-version>4.1.6.RELEASE</org.springframework-version>
 		<spring-hateoas-version>0.17.0.RELEASE</spring-hateoas-version>
-		<jackson.version>2.5.1</jackson.version>
 		<json-path.version>2.0.0</json-path.version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
+			<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+	
 		<!-- Spring -->
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${org.springframework-version}</version>
 			<exclusions>
-				<!-- Exclude Commons Logging in favor of SLF4j -->
+				Exclude Commons Logging in favor of SLF4j
 				<exclusion>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
@@ -58,38 +67,47 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>3.2.6.RELEASE</version>
+		</dependency> -->
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+		
 		<!-- jackson -->
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
 		</dependency>
 
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>${org.aspectj-version}</version>
 		</dependency>
 
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -128,7 +146,6 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -150,28 +167,31 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 			<version>${org.springframework-version}</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path</artifactId>
-			<version>${json-path.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path-assert</artifactId>
-			<version>2.0.0</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -180,7 +200,6 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>
 				<configuration>
 					<additionalProjectnatures>
 						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
@@ -195,19 +214,17 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
 				<configuration>
 					<mainClass>org.test.int1.Main</mainClass>
 				</configuration>

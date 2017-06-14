@@ -2,6 +2,7 @@ package com.aakam.sample.dto;
 
 import java.io.Serializable;
 
+import com.aakam.sample.view.CharacterView;
 import com.aakam.sample.view.UserView;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -10,13 +11,13 @@ public class User implements Serializable {
 	@JsonView(UserView.Detail.class)
 	private Long userId;
 
-	@JsonView(UserView.Summary.class)
+	@JsonView({ UserView.Summary.class, CharacterView.Summary.class })
 	private String bioDetails;
 
-	@JsonView(UserView.Summary.class)
+	@JsonView({ UserView.Summary.class, CharacterView.Summary.class })
 	private String firstNm;
 
-	@JsonView(UserView.Detail.class)
+	@JsonView({ UserView.Detail.class, CharacterView.Detail.class })
 	private String lastNm;
 
 	public User(Long userId, String firstNm, String lastNm) {
